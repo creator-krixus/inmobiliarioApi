@@ -1,5 +1,4 @@
 const propertySchema = require('../models/property');
-
 const controller = {}
 
 controller.createProperty = (req, res) => {
@@ -39,7 +38,11 @@ controller.getEstate = (req, res) => {
  }
 
 controller.getProperty = (req, res) => {
-     res.json('Inmueble encontrado por su id');
+     const { id } = req.params; 
+     propertySchema
+         .findById(id)
+         .then((data) =>  res.json({ data: data }))
+         .catch((error) =>  res.json({message: error}))
 }
 
 controller.updateProperty = (req, res) => {
@@ -47,7 +50,11 @@ controller.updateProperty = (req, res) => {
 }
 
 controller.deleteProperty = (req, res) => {
-      res.json('Inmueble borrado');
+     const { id } = req.params; 
+     propertySchema
+         .remove({_id:id})
+         .then((data) =>  res.json(data))
+         .catch((error) =>  res.json({message: error}))
 }
 
 module.exports = controller
