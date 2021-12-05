@@ -46,7 +46,12 @@ controller.getProperty = (req, res) => {
 }
 
 controller.updateProperty = (req, res) => {
-     res.json('Inmueble actualizado');
+     const { id } = req.params;
+     const { clase, precio, estado, area, habitaciones, baños, parqueaderos, estrato, piso, imagenes, descripcion, ubicacion } = req.body;
+     propertySchema
+         .updateOne({_id: id}, {$set:{ clase, precio, estado, area, habitaciones, baños, parqueaderos, estrato, piso, imagenes, descripcion, ubicacion }})
+         .then((data) =>  res.json(data))
+         .catch((error) =>  res.json({message: error}))
 }
 
 controller.deleteProperty = (req, res) => {

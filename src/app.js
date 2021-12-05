@@ -2,12 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const apiRouter = require('./router')
+const documents = require('./config/documentsApi')
 require('dotenv').config()
 const conection = require('./config/configDB')
 const cors = require('cors');
 const helmet = require('helmet')
 
 app.set('port', process.env.PORT || 8000);
+documents(app)
 app.use(morgan('dev'));
 app.use(cors());
 app.use(helmet());

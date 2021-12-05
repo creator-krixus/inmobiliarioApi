@@ -37,6 +37,9 @@ const propertySchema = mongoose.Schema({
     imagenes: {
         type: Array
     },
+    descripcion: {
+        type: String
+    },
     ubicacion: {
         type: Object
     }
