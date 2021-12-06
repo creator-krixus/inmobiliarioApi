@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    confirmPassword: {
+        type: String,
+        required: true
+    }
 },
     {
         //Con timestamps me pone la fecha de creacion del objeto

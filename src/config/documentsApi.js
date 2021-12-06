@@ -27,104 +27,108 @@ module.exports = documents;
  * @swagger
  * components:
  *   schemas:
- *      estate:
+ *      Estate:
  *        type: object
  *        properties:
- *          titulo:
+ *          clase:
  *              type: string
- *              description: title movie
- *          genero:
- *              type: array
- *              description: genero the movie
- *          actores:
- *              type: array
- *              description: Names actors 
- *          resumen:
- *              type: string
- *              description: resumen the movie
- *          paises: 
- *              type: array
- *              description: paises donde se transmitio
- *          directores:
- *              type: array
- *              description: directores de la movie
- *          year:
+ *              description: Clase del inmueble
+ *          precio:
  *              type: number
- *              description: year cuando se grabo la movie
- *          rating:
+ *              description: Valor del inmueble
+ *          estado:
+ *              type: string
+ *              description: Estado del inmueble venta o arrendo  
+ *          area:
  *              type: number
- *              description: calificacion otorgada a la movie
- *          poster:
+ *              description: Cantidad de metros construidos del inmueble
+ *          habitaciones: 
+ *              type: number
+ *              description: Cantidad de habitaciones del inmueble
+ *          baños:
+ *              type: number
+ *              description: Cantidad de baños en el inmueble
+ *          parqueaderos:
+ *              type: number
+ *              description: Cantidad de parqueaderos del inmueble
+ *          estrato:
+ *              type: number
+ *              description: Estrato del inmueble
+ *          piso:
+ *              type: number
+ *              description: Ubicacion del inmueble en pisos
+ *          imagenes:
  *              type: string
- *              description: url donde se encuentra el poster de la movie
- *          idiomas:
- *              type: array
- *              description: idiomas a los cuales se ha traducido la movie
- *          clasificacion:
+ *              description: Url de la imagen del inmueble
+ *          descripcion:
  *              type: string
- *          tipo:
+ *          ubicacion:
  *              type: string
  *        required:
- *            -titulo
+ *            -clase
+ *            -precio
+ *            -estado
+ *            -habitaciones
+ *            -baños      
  *        example:
- *           titulo: La venganza
- *           genero: [terror, accion, suspenso]
- *           actores: [{nombre: tomas, apellido: salas, image: http://image.png}, {nombre: mateo, apellido: uribe, image: http://image.png}, {nombre: juana, apellido: marquez, image: http://image.png}]
- *           resumen: Una breve sinapsis de la trama de la pelicula
- *           paises: [usa, españa]
- *           directores: [{nombre: mateo, apellido: rodriguez, image: http://image.png}]
- *           year: 3021
- *           rating: 89
- *           poster: http://jhsgsfj.com
- *           idiomas: [spanish, english]
- *           clasificacion: cuatro estrellas
- *           tipo: pelicula
+ *           clase: casa 
+ *           precio: 120000000
+ *           estado: arrendo
+ *           area: 78
+ *           habitaciones: 3
+ *           baños: 2
+ *           parqueaderos: 1
+ *           estrato: 5
+ *           piso: 6
+ *           imagenes: https://imagen.png
+ *           descripcion: Hermosa propiedad
+ *           ubicacion: 
  */
 
-//Endpoint para crear nuevas peliculas
+//Endpoint para crear nuevos inmuebles
 /**
  * @swagger
- * /api/v1/movies:
+ * /api/v1/estate:
  *  post:
- *      summary: Create new movie
- *      tags: [movies]
+ *      summary: Create new propertie
+ *      tags: [estate]
  *      requestBody:
  *          required: true
  *          content:
  *              application/json:
  *                  schema:
  *                      type: object
- *                      $ref: '#/components/schemas/Movies'
+ *                      $ref: '#/components/schemas/Estate'
  *      responses:
  *          200:
- *              description: New movie create!
+ *              description: New propertie create!
  */
 
-//Endpoint para obtener todas las peliculas de la base de datos
+//Endpoint para obtener todos los inmuebles
 /**
  * @swagger
- * /api/v1/movies:
+ * /api/v1/estate:
  *  get:
- *      summary: Return all movies of the first page
- *      tags: [movies]                
+ *      summary: Return all properties of the first page
+ *      tags: [estate]                
  *      responses:
  *          200:
- *              description: All movies
+ *              description: All estate
  *              content:
  *                  application/json:
  *                      schema:
  *                          type: array
  *                          items:
- *                              $ref: '#/components/schemas/Movies'
+ *                              $ref: '#/components/schemas/Estate'
  */
 
-//Endpoint para obtener las peliculas por paginas en la base de datos
+//Endpoint para obtener las propiedades por paginas en la base de datos
 /**
  * @swagger
- * /api/v1/movies?page={page}&limit={limit}:
+ * /api/v1/estate?page={page}&limit={limit}:
  *  get:
- *      summary: Return all movies the each page selected
- *      tags: [movies]
+ *      summary: Return all properties the each page selected
+ *      tags: [estate]
  *      parameters:
  *          - in: path
  *            name: page
@@ -138,96 +142,96 @@ module.exports = documents;
  *            description: Number the items to return                     
  *      responses:
  *          200:
- *              description: All movies of this page
+ *              description: All estaet of this page
  *              content:
  *                  application/json:
  *                      schema:
  *                          type: array
  *                          items:
- *                              $ref: '#/components/schemas/Movies'
+ *                              $ref: '#/components/schemas/Estate'
  */
 
 
 
-//Obtener una pelicula mediante el id de la pelicula
+//Obtener una propiedad mediante el id de la propiedad
 /**
  * @swagger
- * /api/v1/movies/{id}:
+ * /api/v1/estate/{id}:
  *  get:
- *      summary: Return one movies
- *      tags: [movies]
+ *      summary: Return one propertie
+ *      tags: [estate]
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *              type: string
  *          required: true
- *          description: One movie
+ *          description: A propertie
  *      responses:
  *          200:
- *              description: One movie
+ *              description: A propertie
  *              content:
  *                  application/json:
  *                      schema:
  *                          type: objet
  *                          items:
- *                              $ref: '#/components/schemas/Movies'
+ *                              $ref: '#/components/schemas/Estate'
  *          404:
- *              description: Movie not found
+ *              description: Propertie not found
  */
 
-//Editar la informacion de una pelicula
+//Editar la informacion de una propiedad
 /**
  * @swagger
- * /api/v1/movies/{id}:
+ * /api/v1/estate/{id}:
  *  put:
- *      summary: Update one movies
- *      tags: [movies]
+ *      summary: Update a propertie
+ *      tags: [estate]
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *              type: string
  *          required: true
- *          description: Update one movie
+ *          description: Update a propertie
  *      requestBody:
  *          required: true
  *          content:
  *              application/json:
  *                  schema:
  *                      type: object
- *                      $ref: '#/components/schemas/Movies'
+ *                      $ref: '#/components/schemas/Estate'
  *      responses:
  *          200:
- *              description: update movie
+ *              description: update propertie
  *              content:
  *                  application/json:
  *                      schema:
  *                          type: objet
  *                          items:
- *                              $ref: '#/components/schemas/Movies'
+ *                              $ref: '#/components/schemas/Estate'
  *          404:
- *              description: Movie not found
+ *              description: Propertie not found
  */
 
 
-//Borra una pelicula
+//Borra una propiedad
 /**
  * @swagger
- * /api/v1/movies/{id}:
+ * /api/v1/estate/{id}:
  *  delete:
- *      summary: Delete one movie
- *      tags: [movies]
+ *      summary: Delete a propertie
+ *      tags: [estate]
  *      parameters:
  *        - in: path
  *          name: id
  *          schema:
  *              type: string
  *          required: true
- *          description: Delete one movie
+ *          description: Delete a propertie
  *      responses:
  *          200:
- *              description: Delete movie
+ *              description: Delete propertie
  *          404:
- *              description: Movie not found
+ *              description: Propertie not found
  */
