@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/users')
+const auth = require("../auth/auth");
 
 //Crear nuevo usuario
-router.post('/', controller.createUser);
+router.post('/register', controller.createUser);
+
+//Logeo usuario
+router.post('/login', controller.loginUser);
+
+//Acceso a ruta protegida
+router.post('/welcome', controller.rutaProtegida);
 
 //Retorna una lista completa de usuarios registrados
 router.get('/', controller.getUsers);
