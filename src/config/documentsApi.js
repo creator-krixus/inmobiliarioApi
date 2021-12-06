@@ -158,7 +158,7 @@ module.exports = documents;
  * @swagger
  * /api/v1/estate/{id}:
  *  get:
- *      summary: Return one propertie
+ *      summary: Return a propertie
  *      tags: [estate]
  *      parameters:
  *        - in: path
