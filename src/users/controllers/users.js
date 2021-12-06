@@ -1,6 +1,8 @@
+const userSchema = require('../models/users')
 const bcrypt = require('bcrypt');
 //Numero de rondas de encriptaciones
 const roundSalt = 10;
+
 
 const controller = {};
 
@@ -12,11 +14,24 @@ controller.createUser = async (req, res) => {
           if (password == confirmPassword){
                //encriptar la clave
                const hashed = await bcrypt.hash(password, roundSalt);
-               console.log(hashed)
-               res.json({isOk: true, msj:'Usuario confirmado'});
+               const user = userSchema({
+                    email: email,
+                    password: hashed
+               });
+               user
+                    .save()
+                    .then(data => {
+                         res.json(data)
+                         res.json({isOk: true, msj:'Usuario creado'});
+                    } )
+                    .catch(error =>  {
+                         res.json(error)
+                         res.json('Usuario no se puede crear');
+                    })
+               
           }else{
                //Enviar mensaje de error
-               res.json({isok: false, msj: 'Passwords not equals'});
+               res.json({isOk: false, msj: 'Passwords not equals'});
           }
      } catch (error) {
           console.log(error)
@@ -25,7 +40,10 @@ controller.createUser = async (req, res) => {
 
 //Obtenemos lista de todos los usuarios
 controller.getUsers = (req, res) => {
-     res.json({message: 'lista de usuarios'});
+     userSchema
+               .find()
+               .then(data =>  res.json(data))
+               .catch(error =>  res.json({msj: error}))
 }
 
 //Obtenemos un usuario por su id

@@ -235,3 +235,51 @@ module.exports = documents;
  *          404:
  *              description: Propertie not found
  */
+
+//Creacion del esquema de la documentacion
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      User:
+ *        type: object
+ *        properties:
+ *          email:
+ *              type: string
+ *              description: Email valido
+ *          password:
+ *              type: string
+ *              description: Clave secreta
+ *          confirmPassword:
+ *              type: string
+ *              description: Confirmar clave secreta
+ *        required:
+ *            -email
+ *            -password
+ *            -confirmPassword     
+ *        example:
+ *           email: email@gmail.com
+ *           password: Halo1
+ *           confirmPassword: Halo1
+ */
+
+//Endpoint para crear nuevos usuarios
+/**
+ * @swagger
+ * /api/v1/users:
+ *  post:
+ *      summary: Create new user
+ *      tags: [users]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/User'
+ *      responses:
+ *          200:
+ *              description: New user create!
+ */
+
+
