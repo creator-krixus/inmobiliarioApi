@@ -263,10 +263,35 @@ module.exports = documents;
  *           confirmPassword: Halo1
  */
 
+//Creacion del esquema de la documentacion
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      UserLogin:
+ *        type: object
+ *        properties:
+ *          email:
+ *              type: string
+ *              description: Email valido
+ *          password:
+ *              type: string
+ *              description: Clave secreta
+ *          confirmPassword:
+ *              type: string
+ *              description: Confirmar clave secreta
+ *        required:
+ *            -email
+ *            -password   
+ *        example:
+ *           email: email@gmail.com
+ *           password: Halo1
+ */
+
 //Endpoint para crear nuevos usuarios
 /**
  * @swagger
- * /api/v1/users:
+ * /api/v1/users/register:
  *  post:
  *      summary: Create new user
  *      tags: [users]
@@ -280,6 +305,25 @@ module.exports = documents;
  *      responses:
  *          200:
  *              description: New user create!
+ */
+
+//Endpoint para crear nuevos usuarios
+/**
+ * @swagger
+ * /api/v1/users/login:
+ *  post:
+ *      summary: Login 
+ *      tags: [users]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#components/schemas/UserLogin'
+ *      responses:
+ *          200:
+ *              description: User login!
  */
 
 
