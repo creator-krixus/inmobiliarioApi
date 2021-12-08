@@ -9,7 +9,7 @@ controller.createProperty = (req, res) => {
           .catch(error =>  res.json({message: error}))
 }
 
-controller.getEstate = (req, res) => {
+controller.getEstateAll = (req, res) => {
      propertySchema
                .find()
                .then((data) => {
