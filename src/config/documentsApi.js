@@ -235,8 +235,13 @@ module.exports = documents;
  *          404:
  *              description: Propertie not found
  */
+/**************************************************************************************
+ **************************************************************************************
+ **************************   Registros y logeos    ************************************
+ *************************************************************************************
+ ***************************************************************************************/
 
-//Creacion del esquema de la documentacion
+//Creacion del esquema de la documentacion register new user
 /**
  * @swagger
  * components:
@@ -263,7 +268,7 @@ module.exports = documents;
  *           confirmPassword: Halo1
  */
 
-//Creacion del esquema de la documentacion
+//Creacion del esquema de la documentacion login user
 /**
  * @swagger
  * components:
@@ -288,7 +293,7 @@ module.exports = documents;
  *           password: Halo1
  */
 
-//Endpoint para crear nuevos usuarios
+//Endpoint para registrar y crear nuevos usuarios
 /**
  * @swagger
  * /api/v1/users/register:
@@ -307,7 +312,7 @@ module.exports = documents;
  *              description: New user create!
  */
 
-//Endpoint para crear nuevos usuarios
+//Endpoint para logear los usuarios
 /**
  * @swagger
  * /api/v1/users/login:
@@ -326,4 +331,102 @@ module.exports = documents;
  *              description: User login!
  */
 
+/**************************************************************************************
+ **************************************************************************************
+ **************************  Contacto y mensajeria  ***********************************
+ **************************************************************************************
+ ***************************************************************************************/
 
+//Creacion del esquema del formulario de contacto
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      contacto:
+ *        type: object
+ *        properties:
+ *          email:
+ *              type: string
+ *              description: Email valido
+ *          nombre:
+ *              type: string
+ *              description: Nombre del usuario
+ *          phone:
+ *              type: string
+ *              description: Telefono del usuario
+ *          mensaje:
+ *              type: string
+ *              description: Mensaje que deja el usuario
+ *        required:
+ *            -email
+ *            -mensaje     
+ *        example:
+ *           email: email@gmail.com
+ *           nombre: Wilson
+ *           phone: 3002001365
+ *           mensaje: Estoy interesado en adquirir o alquilar una propiedad
+ */
+
+//Endpoint para registrar y crear nuevos mensajes
+/**
+ * @swagger
+ * /api/v1/contacto:
+ *  post:
+ *      summary: Create new message contact
+ *      tags: [contacto]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/contacto'
+ *      responses:
+ *          200:
+ *              description: New message create!
+ */
+
+//Endpoint para obtener todos los mensajes
+/**
+ * @swagger
+ * /api/v1/contacto:
+ *  get:
+ *      summary: Return all messages
+ *      tags: [contacto]                
+ *      responses:
+ *          200:
+ *              description: All messages
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              $ref: '#/components/schemas/contacto'
+ */
+
+//Obtener un mensaje mediante el id
+/**
+ * @swagger
+ * /api/v1/contacto/{id}:
+ *  get:
+ *      summary: Return a message
+ *      tags: [contacto]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *              type: string
+ *          required: true
+ *          description: A message
+ *      responses:
+ *          200:
+ *              description: A message
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: objet
+ *                          items:
+ *                              $ref: '#/components/schemas/contacto'
+ *          404:
+ *              description: Message not found
+ */

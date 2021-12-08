@@ -5,8 +5,11 @@ const controller = require('../controllers/property')
 //Crear nuevo inmueble
 router.post('/', controller.createProperty);
 
-//Obtener todos los inmuebles
+//Obtener todos los inmuebles paginados
 router.get('/', controller.getEstate);
+
+//Obtener todos los inmuebles una lista
+router.get('/', controller.getEstateAll);
 
 //Obtener inmueble por id
 router.get('/:id', controller.getProperty);
