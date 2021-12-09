@@ -22,7 +22,8 @@ controller.getEstateAll = (req, res) => {
                .catch((error) =>  res.json({message: error}))
 }
 
-controller.getEstate = (req, res) => {
+//Para trabajar con paginacion descomentar estas lineas
+/* controller.getEstate = (req, res) => {
      const options = req.query;
      propertySchema
      //Con paginate puedo paginar cuantos valores me regresa de la base de datos    
@@ -35,7 +36,7 @@ controller.getEstate = (req, res) => {
              }
          })
          .catch((error) =>  res.json({message: error}))
- }
+ } */
 
 controller.getProperty = (req, res) => {
      const { id } = req.params; 

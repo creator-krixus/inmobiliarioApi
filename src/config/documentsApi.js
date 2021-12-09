@@ -73,7 +73,7 @@ module.exports = documents;
  *        example:
  *           clase: casa 
  *           precio: 120000000
- *           estado: arrendo
+ *           estado: alquiler
  *           area: 78
  *           habitaciones: 3
  *           baños: 2
