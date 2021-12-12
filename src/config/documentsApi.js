@@ -173,9 +173,8 @@ module.exports = documents;
  *              content:
  *                  application/json:
  *                      schema:
- *                          type: objet
- *                          items:
- *                              $ref: '#/components/schemas/Estate'
+ *                          type: object
+ *                          $ref: '#/components/schemas/Estate'
  *          404:
  *              description: Propertie not found
  */
@@ -424,9 +423,8 @@ module.exports = documents;
  *              content:
  *                  application/json:
  *                      schema:
- *                          type: objet
- *                          items:
- *                              $ref: '#/components/schemas/contacto'
+ *                          type: object
+ *                          $ref: '#/components/schemas/contacto'
  *          404:
  *              description: Message not found
  */
